@@ -1,0 +1,85 @@
+.countdownContainer {
+  display: flex;
+  align-items: center;
+
+  font-family: Rajdhani, sans-serif;
+  font-weight: 600;
+  color: var(--title);
+}
+
+.countdownContainer > div { /* pega a div de maior nível (div a qual hospeda a classe) */
+  flex: 1; /* faz ocupar toda o espaço disponível na horizontal */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; /* espaçamentos entre os itens e os espaçamentos nas 
+  extremidades do contêiner são distribuídos de forma igualitária */
+
+  background: var(--white);
+  box-shadow: 0 0 68px rgba(0, 0, 0, 0.05); /* shadow da borda da div */
+  border-radius: 5px;
+
+  font-size: 8.5rem;
+  text-align: center;
+}
+
+.countdownContainer > div span {
+  flex: 1; /* faz ocupar toda o espaço disponível na horizontal */
+}
+
+.countdownContainer > div span:first-child { /* pega o primeiro span (primeiro filho da div) */
+  border-right: 1px solid #f0f1f3;
+}
+
+.countdownContainer > div span:last-child { /* pega o segundo span (último filho da div) */
+  border-left: 1px solid #f0f1f3;
+}
+
+.countdownContainer > span { /* span de nível mais alto, ':' */
+  font-size: 6.25rem;
+  margin: 0 0.25rem; /* 0.25rem nas laterais */
+}
+
+.countdownButton {
+  width: 100%;
+  height: 5rem;
+
+  margin-top: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 5px; /* arredondamento */
+
+  background: var(--blue);
+  cursor: pointer; /* para o cursor virar uma maozinha ao ficar em cima */
+
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+
+  transition: background-color 200ms;
+}
+
+.countdownButton:hover {
+  background: var(--blue-dark);
+}
+
+.countdownButtonActive {
+  background: var(--white);
+  color: var(--title);
+}
+
+.countdownButtonActive:hover {
+  background: var(--red);
+  color: var(--white);
+}
+
+.countdownButton:disabled {
+  background: var(--white);
+  color: var(--text);
+
+  cursor: not-allowed;
+}

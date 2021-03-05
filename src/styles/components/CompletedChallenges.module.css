@@ -1,0 +1,19 @@
+.completedChallengesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* espaço máximo entre os itens */
+
+  margin: 3.5rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #d7d8da; /* borda apenas embaixo */
+
+  font-weight: 500;
+}
+
+.completedChallengesContainer span:first-child { /* pega o primeiro span (primeiro filho) */
+  font-size: 1.25rem;
+}
+
+.completedChallengesContainer span:last-child { /* pega o segundo span (último filho) */
+  font-size: 1.5rem;
+}

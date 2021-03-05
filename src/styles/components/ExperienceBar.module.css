@@ -1,0 +1,32 @@
+/* Responsável pelo css do nosso componente */
+
+.experienceBar { 
+  display: flex; /* itens um ao lado do outro */
+  align-items: center;
+}
+
+.experienceBar span {
+  font-size: 1rem; /* 15px que definimos no nosso 'global.css' */
+}
+
+.experienceBar > div { /* pega a 'div' de nível mais alto */
+  flex: 1; /* faz ocupar a largura máxima do container */
+  height: 4px; /* não estamos usando 'rem' porque queremos que tenha o mesmo tamanho em diferentes telas  */
+  border-radius: 4px;
+  background: var(--gray-line); /* das cores pré-definidas no 'global.css' */
+  margin: 0 1.5rem;
+  position: relative; /* para a 'div ter como referência ela mesma */
+}
+
+.experienceBar > div div { /* 'div' de mais alto nível dentro da de mais alto nível */
+  height: 4px;
+  border-radius: 4px;
+  background: var(--green);
+}
+
+span.currentExperience { /* ou '.experience-bar > div span.current-experience' */
+  position: absolute; /* a referência passa a ser a 'div' */
+  top: 12px;
+  transform: translateX(-50%); /* pra 'ancor' do elemento ser definida ao centro, assim 
+  alinhando-o corretamente ao centro */
+}
