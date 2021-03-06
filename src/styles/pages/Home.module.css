@@ -1,11 +1,14 @@
+/* css module do 'index.tsx' */
+
 .container {
   height: 100vh;
-  max-width: 998px;
+  max-width: 992px;
   margin: 0 auto;
-  padding: 2.5rem 2rem;
 
   display: flex;
   flex-direction: column;
+  padding: 2.5rem 2rem; /* que faz com que os containers de dentro do nosso principal, 'container',
+  ocupem apenas espaçamento determinado pelo padding (espaço restante) */
 }
 
 .container section {

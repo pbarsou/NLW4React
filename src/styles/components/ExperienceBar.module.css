@@ -10,7 +10,7 @@
 }
 
 .experienceBar > div { /* pega a 'div' de nível mais alto */
-  flex: 1; /* faz ocupar a largura máxima do container */
+  flex: 1; /* faz se estender pelo espaço livre no container */
   height: 4px; /* não estamos usando 'rem' porque queremos que tenha o mesmo tamanho em diferentes telas  */
   border-radius: 4px;
   background: var(--gray-line); /* das cores pré-definidas no 'global.css' */
@@ -18,7 +18,7 @@
   position: relative; /* para a 'div ter como referência ela mesma */
 }
 
-.experienceBar > div div { /* 'div' de mais alto nível dentro da de mais alto nível */
+.experienceBar > div > div { /* 'div' de mais alto nível dentro da de mais alto nível */
   height: 4px;
   border-radius: 4px;
   background: var(--green);

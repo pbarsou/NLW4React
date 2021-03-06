@@ -1,6 +1,7 @@
 import styles from '../styles/components/ExperienceBar.module.css'; /* variável responsável
 por receber o css module do componente // 'Css Module' é a forma que o 'Next.js' disponibiliza 
-de utilizarmos css livremente na nossa aplicação */ 
+de utilizarmos css livremente na nossa aplicação e de que o css dos componentes não invadam um
+ao outro */ 
 
 export function ExperienceBar () {
   return (

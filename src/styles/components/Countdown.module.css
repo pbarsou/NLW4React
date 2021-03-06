@@ -8,7 +8,7 @@
 }
 
 .countdownContainer > div { /* pega a div de maior nível (div a qual hospeda a classe) */
-  flex: 1; /* faz ocupar toda o espaço disponível na horizontal */
+  flex: 1; /* faz se estender pelo espaço livre no container */
 
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@
 }
 
 .countdownContainer > div span {
-  flex: 1; /* faz ocupar toda o espaço disponível na horizontal */
+  flex: 1; /* faz se estender pelo espaço livre no container */
 }
 
 .countdownContainer > div span:first-child { /* pega o primeiro span (primeiro filho da div) */
@@ -63,7 +63,7 @@
   transition: background-color 200ms;
 }
 
-.countdownButton:hover {
+.countdownButton:not(:disabled):hover { /* faz o hover somente se o botão estiver habilitado */
   background: var(--blue-dark);
 }
 
@@ -72,7 +72,7 @@
   color: var(--title);
 }
 
-.countdownButtonActive:hover {
+.countdownButtonActive:not(:disabled):hover { /* faz o hover somente se o botão estiver habilitado */
   background: var(--red);
   color: var(--white);
 }
@@ -81,5 +81,5 @@
   background: var(--white);
   color: var(--text);
 
-  cursor: not-allowed;
+  cursor: not-allowed; /* não é possível clicar */
 }

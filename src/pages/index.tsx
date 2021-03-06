@@ -1,14 +1,17 @@
 // O 'index.tsx' é a nossa Home Page. É Página principal da nossa aplicação.
 
+import Head from 'next/head'; /* importando o 'Head' em que podemos escrever normalmente 
+em HTML*/
+
 // importação de cada componente
 
 import { CompletedChallenges } from "../components/CompletedChallenges"; 
 import { ExperienceBar } from "../components/ExperienceBar";
 import { Profile } from "../components/Profile";
 import { Countdown } from "../components/Countdown";
-import styles from '../styles/pages/Home.module.css';
-import Head from 'next/head'; /* importando o 'Head' em que podemos escrever normalmente 
-em HTML*/
+import { ChallengeBox } from "../components/ChallengeBox";
+
+import styles from '../styles/pages/Home.module.css'; // importação do css module
  
 export default function Home() {
   return (
@@ -27,9 +30,9 @@ export default function Home() {
         <CompletedChallenges />
         <Countdown />
       </div>
- 
+  
       <div>
- 
+        <ChallengeBox />
       </div>
  
     </section>
