@@ -1,15 +1,21 @@
 import styles from '../styles/components/Countdown.module.css';
 
-import { useState, useEffect } from 'react'; // 'useState' é responsável por mudar o estado das coisas 
-// 'useEffect': quando algo acontecer, dispara um efeito colateral, no nosso caso, executa uma função 
+import { useState, useEffect, useContext } from 'react'; /* 'useState' é responsável por mudar o 
+estado das coisas // 'useEffect': quando algo acontecer, dispara um efeito colateral, no nosso caso, 
+executa uma função // 'useContext' é necessária para o uso de contextos no nosso componente */ 
+
+import { ChallengesContext } from '../context/ChallengesContext'; // importação do contexto
  
 let countdownTimeout: NodeJS.Timeout; /* variável global responsável por parar imediatamente o 
 'setTimeout' // escrevemos ': NodeJS.Timeout' para conseguirmos saber qual o formato exato do 
 'countdownTimeout' */
  
 export function Countdown () {
+
+  const { startNewChallenge } = useContext(ChallengesContext); /* estamos pegando uma função de 
+  dentro do contexto */
  
-  const [time, setTime] = useState(25 * 60); /* parâmetro do 'useState' é atribuído a 'time', já que
+  const [time, setTime] = useState(0.1 * 60); /* parâmetro do 'useState' é atribuído a 'time', já que
   'useState' retorna um array de 2 posições, sendo a primeira o valor do parâmetro e a segunda a função
   modificadora */
  
@@ -25,7 +31,7 @@ export function Countdown () {
  
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
  
-  function startCountdown() { // função responsável por startar o botão
+  function startCountdown () { // função responsável por startar o botão
     setIsActive(true); // alterando valor de 'isActive' pela função modificadora
   }
  
@@ -45,6 +51,7 @@ export function Countdown () {
     else if (isActive && time === 0) { // para verificar igualdade no js, usamos '==='
       setHasFinished(true);
       setIsActive(false);
+      startNewChallenge();
     }
   }, [isActive, time]); /* o primeiro parâmetro do 'useEffect' é sempre o que queremos executar, ou seja, 
   é sempre uma função // o segundo parâmetro, é quando queremos executar, que neste caso é sempre que o 

@@ -1,19 +1,21 @@
+import { useContext } from 'react'; // importação do 'useContext'
+import { ChallengesContext } from '../context/ChallengesContext'; // importação do contexto
 import styles from '../styles/components/ChallengeBox.module.css';
 
 export function ChallengeBox() {
 
-  const hasActiveChallenge = true;
+  const { activeChallenge } = useContext(ChallengesContext); /* estamos pegando uma função de 
+  dentro do contexto (dentre as que ele retorna, obviamente) */
 
   return (
     <div className={styles.challengeBoxContainer}>
-      { hasActiveChallenge ? (
+      { activeChallenge ? (
         <div className={styles.challengeActive}>
-          <header>Ganhe 400 xp</header>
+          <header>Ganhe {activeChallenge.amount} xp</header>
           <main>
-            <img src='icons/body.svg' alt=""/>
+            <img src={`icons/${activeChallenge.type}.svg`} alt=""/>
             <strong>Exercite-se</strong>
-            <p>É agora Pablinho!</p>
-            <p>Caminhe por 3 minutos e estique suas pernas pra dar aquela relaxada.</p>
+            <p>{activeChallenge.description}</p>
           </main>
           <footer>
               <button type="button" className={styles.challengeFailedButton}>
@@ -37,3 +39,10 @@ export function ChallengeBox() {
     </div>
   );
 }
+
+/* se 'activeChallenge' não for 'null', vai entrar na aba de verdadeiro, se for 'null', entra na 
+de falso */
+/* '<img src={`icons/${activeChallenge.type}.svg`} alt=""/>' forma de colocarmos js dentro de um 
+caminho */
+/* a partir de agora, todas as informações do 'ChallengeBox' está vindo das propriedades presentes
+no nosso 'Challenge', que fica no 'ChallengesContext' */
