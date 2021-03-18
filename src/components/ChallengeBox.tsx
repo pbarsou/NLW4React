@@ -4,8 +4,10 @@ import styles from '../styles/components/ChallengeBox.module.css';
 
 export function ChallengeBox() {
 
-  const { activeChallenge } = useContext(ChallengesContext); /* estamos pegando uma função de 
-  dentro do contexto (dentre as que ele retorna, obviamente) */
+  const { activeChallenge, resetChallenge, completedChallenge } = useContext(ChallengesContext); /* estamos pegando 
+  uma variável e uma função de dentro do contexto (dentre as que ele retorna, obviamente) // se 
+  'activeChallenge' não for 'null', vai entrar no bloco de verdadeiro, se for 'null', entra no 
+  bloco de falso */
 
   return (
     <div className={styles.challengeBoxContainer}>
@@ -18,11 +20,17 @@ export function ChallengeBox() {
             <p>{activeChallenge.description}</p>
           </main>
           <footer>
-              <button type="button" className={styles.challengeFailedButton}>
+              <button 
+              type="button" 
+              className={styles.challengeFailedButton}
+              onClick={resetChallenge}>
                 Falhei
               </button>
               
-              <button type="button" className={styles.challengeSucceededButton}>
+              <button 
+              type="button" 
+              className={styles.challengeSucceededButton}
+              onClick={completedChallenge}>
                 Completei
               </button>
             </footer>
@@ -40,8 +48,6 @@ export function ChallengeBox() {
   );
 }
 
-/* se 'activeChallenge' não for 'null', vai entrar na aba de verdadeiro, se for 'null', entra na 
-de falso */
 /* '<img src={`icons/${activeChallenge.type}.svg`} alt=""/>' forma de colocarmos js dentro de um 
 caminho */
 /* a partir de agora, todas as informações do 'ChallengeBox' está vindo das propriedades presentes

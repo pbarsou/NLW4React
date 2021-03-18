@@ -24,11 +24,14 @@ cada uma delas (tipagem) */
 
 interface ChallengesContextData {
   level: number;
-  currentExperience: number;
-  challengesCompleted: number;
-  activeChallenge: Challenge;
+  currentExperience: number; // experiência do usuário
+  experienceToNextLevel: number; // experiência para o próximo nível
+  challengesCompleted: number; // número de desafios completos
+  activeChallenge: Challenge; // se existe um desafio ativo ou não
   levelUp: () => void; // função de retorno vazio
   startNewChallenge: () => void;
+  resetChallenge: () => void;
+  completedChallenge: () => void;
 }
 /* dessa forma, devemos informar que nosso contexto será do tipo 'ChallengesContextData' e quando 
 formos usá-lo no restante dos componentes, eles terão acesso facilmente a cada uma dessas 
@@ -49,6 +52,10 @@ queremos receber e o seu tipo */
   const [activeChallenge, setActiveChallenge] = useState(null); /* estado responsável pelo challenge
   atual */
 
+  const experienceToNextLevel = Math.pow((level + 1) * 4, 2); /* calculo que os rpgs usam para 
+  calcular a experiência do usuário para o próximo nível // o 4 é o fator de dificuldade e o 2 é 
+  a potência */
+
   function levelUp () { // função de atribuir +1 level
     setLevel(level +1);
   }
@@ -62,15 +69,45 @@ queremos receber e o seu tipo */
 
     setActiveChallenge(challenge); // desafio setado ao 'activeChallenge'
   }
+  
+  function resetChallenge () { // função responsável por resetar o challenge para null 
+    setActiveChallenge(null); // seta o challenge como null
+  }
+
+  function completedChallenge () { // função responsável por avisar que o desafio foi completo
+
+    if (!activeChallenge) { // se 'activeChallenge' for null // validação 
+      return; // retorna nada
+    }
+
+    const { amount } = activeChallenge; // pegando 'amount' de 'activeChallenge', q é o challenge atual
+
+    let finalExperience = currentExperience + amount; /* finalExperience é a experiência final do 
+    usuário // é o mesmo que 'currentExperience', porém criamos essa para poder alterar o valor */
+
+    if (finalExperience >= experienceToNextLevel) { /* cálculo para caso a experiência para o próximo 
+    nível for ultrapassada */
+      finalExperience = finalExperience - experienceToNextLevel;
+      levelUp(); // aumenta de level
+    }
+
+    setCurrentExperience(finalExperience); // 'finalExperience' como novo valor de 'currentExperience'
+    setActiveChallenge(null); // desafio atual passa a ser 'null'
+    setChallengesCompleted(challengesCompleted + 1); // aumenta +1 em desafios completos
+
+  }
 
   return (
     <ChallengesContext.Provider value={{
       level, 
-      currentExperience, 
+      currentExperience,
+      experienceToNextLevel, 
       challengesCompleted,
       activeChallenge, 
       levelUp, 
-      startNewChallenge}}>  
+      startNewChallenge,
+      resetChallenge,
+      completedChallenge}}>  
     {children}
   </ChallengesContext.Provider>
   )
