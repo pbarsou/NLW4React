@@ -18,6 +18,7 @@
   --blue:#5965e0;
   --blue-dark:#4953b8;
   --blue-twitter:#2aa9e0;
+  --new-background: rgb(153, 0, 255);
 } /* cores que foram utilizadas no projeto */
 
 @media(max-width: 1080px) { 
@@ -35,7 +36,7 @@ parâmetro for verdadeiro */ /* então, se a tela for no mínimo de 1080px */
 parâmetro for verdadeiro */ /* então, se a tela for no mínimo de 760px */
 
 body {
-  background:var(--background); /* é assim que se usa as cores*/
+  background: var(--new-background); /* é assim que se usa as cores*/
   color:var(--text);
 }
 

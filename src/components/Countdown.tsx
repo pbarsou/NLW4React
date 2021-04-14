@@ -5,60 +5,25 @@ estado das coisas // 'useEffect': quando algo acontecer, dispara um efeito colat
 executa uma função // 'useContext' é necessária para o uso de contextos no nosso componente */ 
 
 import { ChallengesContext } from '../context/ChallengesContext'; // importação do contexto
- 
-let countdownTimeout: NodeJS.Timeout; /* variável global responsável por parar imediatamente o 
-'setTimeout' // escrevemos ': NodeJS.Timeout' para conseguirmos saber qual o formato exato do 
-'countdownTimeout' */
- 
+import { CountdownContext } from '../context/CountdownContext';
+
 export function Countdown () {
 
-  const { startNewChallenge } = useContext(ChallengesContext); /* estamos pegando uma função de 
-  dentro do contexto */
- 
-  const [time, setTime] = useState(0.1 * 60); /* parâmetro do 'useState' é atribuído a 'time', já que
-  'useState' retorna um array de 2 posições, sendo a primeira o valor do parâmetro e a segunda a função
-  modificadora */
- 
-  const [isActive, setIsActive] = useState(false); // variável que verificará se o botão está ativo
-  const [hasFinished, setHasFinished] = useState(false); // variável que verificará se o tempo finalizou
-  
-  const minutes = Math.floor(time / 60); /* Math.floor' retorna apenas a parte inteira */
-  const seconds = time % 60; /* resto da divisão*/
+  const { 
+    minutes, 
+    seconds, 
+    hasFinished, 
+    isActive, 
+    resetCountdown, 
+    startCountdown 
+  } = useContext(CountdownContext); // estamos pegando cada variável de dentro do contexto 
+
  
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split(''); /* transformamos os 
   valores em String // 'padStart()' é para se acaso o valor não tiver 2 casas decimais, preencher à 
   esquerda com '0' // 'split()' separa a String retornando um array */
  
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
- 
-  function startCountdown () { // função responsável por startar o botão
-    setIsActive(true); // alterando valor de 'isActive' pela função modificadora
-  }
- 
-  function resetCountdown () { // função de resetar o Countdown
-    clearTimeout(countdownTimeout); // cancela o 'setTimeout'
-    setIsActive(false); // setando 'IsActive' como false para parar a execução do 'useEffect'
-    setTime(25*60); // reiniciando o tempo
-  }
- 
-  useEffect(() => {
-    if (isActive && time > 0) {
-      countdownTimeout = setTimeout(() => { /* o retorno de 'setTimeout', atribuímos a 
-      'countdownTimeout' */
-        setTime(time - 1); // alterando valor de 'time' pela função modificadora
-      }, 1000) // espera 1000ms para executar
-    }
-    else if (isActive && time === 0) { // para verificar igualdade no js, usamos '==='
-      setHasFinished(true);
-      setIsActive(false);
-      startNewChallenge();
-    }
-  }, [isActive, time]); /* o primeiro parâmetro do 'useEffect' é sempre o que queremos executar, ou seja, 
-  é sempre uma função // o segundo parâmetro, é quando queremos executar, que neste caso é sempre que o 
-  valor de 'isActive' mudar (chamamos esse array de 'array de dependência do 'useEffect') */
-  /* adicionamos ainda que queremos que execute quando o valor de 'time' mudar. O valor de 'time' muda 
-  a cada execução do'useEffect', dessa forma, acabamos de criar uma estrutura de repetição, de até que 
-  'time' seja = 0 */
  
   return ( 
     <div>

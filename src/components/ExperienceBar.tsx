@@ -8,7 +8,8 @@ ao outro */
 export function ExperienceBar () {
 
   const { currentExperience, experienceToNextLevel } = useContext(ChallengesContext); /* estamos 
-  pegando as de experiencia do usuário e experiência para o próximo nível de dentro do contexto */
+  pegando as variáveis de experiencia do usuário e experiência para o próximo nível de dentro do 
+  contexto */
 
   const percentToNextLevel = Math.round(currentExperience * 100) / experienceToNextLevel;
   

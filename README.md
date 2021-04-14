@@ -1,5 +1,5 @@
 ## Observações
 
-Level up, current experience e challenges completed implementados e +.
+Dados sendo salvos em Cookies; Uso do 'getServerSideProps'; Criação do modal de LevelUp.
 
 
