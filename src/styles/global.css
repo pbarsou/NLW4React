@@ -36,7 +36,7 @@ parâmetro for verdadeiro */ /* então, se a tela for no mínimo de 1080px */
 parâmetro for verdadeiro */ /* então, se a tela for no mínimo de 760px */
 
 body {
-  background: var(--new-background); /* é assim que se usa as cores*/
+  background: var(--background); /* é assim que se usa as cores*/
   color:var(--text);
 }
 
